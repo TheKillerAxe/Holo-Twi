@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
+const { Client, IntentsBitField, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 
 const commands = require('./register-commands');
 commands.registerCommands();
@@ -43,13 +43,14 @@ const botBehavior = () => {
         }
 
         if (inter.commandName == 'channel') {
+            const file = new AttachmentBuilder('assets/img/axe-channel-pfp.jpg');
             const embed = new EmbedBuilder()
                 .setTitle("Axe ^-^")
                 .setDescription("This is Axe's YouTube channel!")
-                .setThumbnail('https://yt3.googleusercontent.com/bHmVcHG-uk2Wk4OsxK1rfFek71E9l-eZDw8JRRw00lhLYBrHRVw7v-WefrMqWxD25OPKKWeEeHA=s160-c-k-c0x00ffffff-no-rj')
+                .setThumbnail('attachment://axe-channel-pfp.jpg')
                 .setURL('https://www.youtube.com/@TheKillerAxe')
 
-            inter.reply({ embeds: [embed] });
+            inter.reply({ embeds: [embed], files: [file] });
         }
     });
 }
