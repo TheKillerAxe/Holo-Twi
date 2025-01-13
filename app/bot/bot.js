@@ -2,6 +2,9 @@ require('dotenv').config();
 
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
 
+const commands = require('./register-commands');
+commands.registerCommands();
+
 const client = new Client({
     intents: [
         IntentsBitField.Flags.Guilds,
@@ -12,6 +15,8 @@ const client = new Client({
 });
 
 const botBehavior = () => {
+
+
     client.on('ready', (c) => {
         console.log(`${c.user.tag} is live!`);
     });

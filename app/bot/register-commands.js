@@ -36,7 +36,7 @@ const commands = [
 
 const rest = new REST({ version: 10 }).setToken(process.env.DC_TOKEN);
 
-(async () => {
+const registerCommands = async () => {
     try {
         console.log('Registering commands...');
 
@@ -47,4 +47,8 @@ const rest = new REST({ version: 10 }).setToken(process.env.DC_TOKEN);
 
         console.log('Commands registered successfully!');
     } catch (err) { console.log(`>>> CAUGHT AN ERROR: ${err}`); }
-})();
+}
+
+module.exports = {
+    registerCommands
+}

@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const twi = require('./app/bot/bot');
 const express = require('express');
 
 const app = express();
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use(require('./routes/rts_routes'));
 
-app.listen(port, () => console.log('Server is running...'));
-
-// const bot = require('./bot');
-// bot.botLogIn();
+app.listen(port, () => {
+    console.log('Server is running...');
+    twi.botLogIn();
+});
