@@ -51,7 +51,7 @@ const botBehavior = () => {
 
 const botLogIn = () => {
     botBehavior();
-    client.login(process.env.DISCORD_TOKEN);
+    client.login(process.env.DC_TOKEN);
 }
 
 module.exports = {
