@@ -25,7 +25,7 @@ const api = new BungieApi({
  *
  * @param {string} code The authorization code obtained from the authorization link's 'code' parameter.
  * 
- * @returns {string} The access token.
+ * @returns {string} The API's raw access token used to request protected resources.
  */
 const APIConfig = async (code) => {
     await api.authorize(code);

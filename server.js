@@ -1,23 +1,27 @@
 require('dotenv').config();
 
 const twi = require('./app/bot/bot');
-const express = require('express');
 
-const app = express();
-const port = 8081;
+/* UN-COMMENT THESE LINES IF THERE'S ANY NEED TO RUN A WEB SERVER */
+// const express = require('express');
 
-app.use('/css', express.static('./assets/css'));
-app.use('/js', express.static('./assets/js'));
-app.use('/img', express.static('./assets/img'));
+// const app = express();
+// const port = 8081;
 
-// Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use('/css', express.static('./assets/css'));
+// app.use('/js', express.static('./assets/js'));
+// app.use('/img', express.static('./assets/img'));
 
-// Routes
-app.use(require('./routes/rts_routes'));
+// // Middlewares
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
-app.listen(port, () => {
-    console.log('Server is running...');
-    twi.botLogIn();
-});
+// // Routes
+// app.use(require('./routes/rts_routes'));
+
+// app.listen(port, () => {
+//     console.log('Server is running...');
+//     twi.botLogIn();
+// });
+
+twi.botLogIn();

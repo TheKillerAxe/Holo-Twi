@@ -14,6 +14,7 @@ const bng = axios.create({
  *
  * @param {number} membership_type The type of membership of the user: Xbox (1), PSN (2), Steam (3), Blizzard (4), Stadia (5), EpicGames (6).
  * @param {string} membership_id The user's Bungie membership ID.
+ * @param {string} access_token API's raw access token to request protected resources.
  * 
  * @returns {number} Total number of T-Ghoul PvP kills.
  */
