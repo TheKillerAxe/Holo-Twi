@@ -6,23 +6,22 @@ const axios = require('axios');
 const bng = axios.create({
     baseURL: 'https://www.bungie.net/Platform',
     timeout: 60000,
-    headers: {
-        'X-API-Key': process.env.BNG_API_KEY,
-        'Authorization': 'Bearer access_token'
-    }
+    headers: { 'X-API-Key': process.env.BNG_API_KEY }
 });
 
 /**
  * Gets the requested user's total Trinity Ghoul kills, according to the trackers in the vault or character inventory.
  *
- * @param {number} membershipType The type of membership of the user: Xbox (1), PSN (2), Steam (3), Blizzard (4), Stadia (5), EpicGames (6).
- * @param {string} membershipID The user's Bungie membership ID.
+ * @param {number} membership_type The type of membership of the user: Xbox (1), PSN (2), Steam (3), Blizzard (4), Stadia (5), EpicGames (6).
+ * @param {string} membership_id The user's Bungie membership ID.
  * 
  * @returns {number} Total number of T-Ghoul PvP kills.
  */
-const getTGhoulKills = async (membershipType, membershipID) => {
+const getTGhoulKills = async (membership_type, membership_id, access_token) => {
     try {
-        const profileDataRequest = await bng.get(`/Destiny2/${membershipType}/Profile/${membershipID}/?components=102,201`);
+        const profileDataRequest = await bng.get(`/Destiny2/${membership_type}/Profile/${membership_id}/?components=102,201`, {
+            headers: { 'Authorization': `Bearer ${access_token}` }
+        });
         const profileData = profileDataRequest.data.Response;
 
         const vaultItems = profileData.profileInventory.data.items;
@@ -42,7 +41,9 @@ const getTGhoulKills = async (membershipType, membershipID) => {
         let kills = 0;
 
         for (const id of instanceID) {
-            const itemDataRequest = await bng.get(`/Destiny2/1/Profile/4611686018439322455/Item/${id}/?components=309`);
+            const itemDataRequest = await bng.get(`/Destiny2/1/Profile/4611686018439322455/Item/${id}/?components=309`, {
+                headers: { 'Authorization': `Bearer ${access_token}` }
+            });
             const itemData = itemDataRequest.data.Response;
 
             const OPP = itemData.plugObjectives.data.objectivesPerPlug;
