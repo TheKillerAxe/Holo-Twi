@@ -61,8 +61,6 @@ const getTGhoulKills = async (membership_type, membership_id, access_token) => {
     } catch (error) { console.log(error); }
 }
 
-// getTGhoulKills(1, '4611686018439322455').then((kills) => console.log('Trinity Ghoul: ' + kills));
-
 module.exports = {
     getTGhoulKills
 };

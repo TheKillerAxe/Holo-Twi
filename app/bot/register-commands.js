@@ -29,8 +29,24 @@ const commands = [
         description: "Axe's YouTube channel!"
     },
     {
-        name: 'profile',
-        description: "Axe's Destiny Profile"
+        name: 'bng-login',
+        description: "Log into your Bungie account.",
+        options: [
+            {
+                name: 'link',
+                description: 'Get a redirect link to authorize this app on your Bungie account.',
+                type: ApplicationCommandOptionType.Subcommand
+            },
+            {
+                name: 'code',
+                description: 'Code obtained from the redirect link to confirm authorization.',
+                type: ApplicationCommandOptionType.String
+            }
+        ]
+    },
+    {
+        name: 'trinity-kills',
+        description: "Your total count of Trinity Ghoul kills!"
     }
 ];
 
